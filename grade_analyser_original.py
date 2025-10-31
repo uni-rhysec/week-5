@@ -29,3 +29,37 @@ Your output files must be structured exactly as described - output files for all
 Note:
 Your code will only be tested on valid files in the format shown in the 4 example files in this folder - you do not need to validate any data.
 '''
+
+file_name = input("Enter file name: ")
+with open(f"/workspaces/week-5/{file_name}", "r") as read_from:
+     line_1 = True
+     for student in read_from:
+          if line_1:
+               line_1 = False
+          else:
+               student_grades = student.strip().split(',')
+               total_score = 0
+               total_modules = 0
+               for module in range(1,12):
+                    if student_grades[module] != '':
+                         total_score += int(student_grades[module])
+                         total_modules += 1
+               print(student_grades[0])
+               print(total_score)
+               mean = total_score / total_modules
+               string = "f{student_grades[0]},{mean:.2f},{}"
+
+
+
+
+
+     with open(f"/workspaces/week-5/{file_name}_out.csv", "w") as write_to:
+          pass
+
+
+
+
+
+
+
+
