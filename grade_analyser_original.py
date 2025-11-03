@@ -30,6 +30,17 @@ Note:
 Your code will only be tested on valid files in the format shown in the 4 example files in this folder - you do not need to validate any data.
 '''
 
+def convert_to_classification(mean):
+     if mean >= 70:
+          return "1"
+     if mean >= 60:
+          return "2:1"
+     if mean >= 50:
+          return "2:2"
+     if mean >= 40:
+          return "3"
+     return "F"
+
 file_name = input("Enter file name: ")
 with open(f"/workspaces/week-5/{file_name}", "r") as read_from:
      line_1 = True
@@ -47,11 +58,9 @@ with open(f"/workspaces/week-5/{file_name}", "r") as read_from:
                print(student_grades[0])
                print(total_score)
                mean = total_score / total_modules
-               string = "f{student_grades[0]},{mean:.2f},{}"
-
-
-
-
+               classification = convert_to_classification(mean)
+               string = "f{student_grades[0]},{mean:.2f},{classification}"
+               print(string)
 
      with open(f"/workspaces/week-5/{file_name}_out.csv", "w") as write_to:
           pass
