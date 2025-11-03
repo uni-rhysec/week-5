@@ -43,32 +43,21 @@ def convert_to_classification(mean):
 
 file_name = input("Enter file name: ")
 with open(f"/workspaces/week-5/{file_name}", "r") as read_from:
-     line_1 = True
-     for student in read_from:
-          if line_1:
-               line_1 = False
-          else:
-               student_grades = student.strip().split(',')
-               total_score = 0
-               total_modules = 0
-               for module in range(1,12):
-                    if student_grades[module] != '':
-                         total_score += int(student_grades[module])
-                         total_modules += 1
-               print(student_grades[0])
-               print(total_score)
-               mean = total_score / total_modules
-               classification = convert_to_classification(mean)
-               string = "f{student_grades[0]},{mean:.2f},{classification}"
-               print(string)
-
      with open(f"/workspaces/week-5/{file_name}_out.csv", "w") as write_to:
-          pass
-
-
-
-
-
-
-
-
+          line_1 = True
+          for student in read_from:
+               if line_1:
+                    line_1 = False
+                    write_to.write("student_id,average_grade,classification\n")
+               else:
+                    student_grades = student.strip().split(',')
+                    total_score = 0
+                    total_modules = 0
+                    for module in range(1,12):
+                         if student_grades[module] != '':
+                              total_score += int(student_grades[module])
+                              total_modules += 1
+                    mean = total_score / total_modules
+                    classification = convert_to_classification(mean)
+                    string = f"{student_grades[0]},{mean:.2f},{classification}\n"
+                    write_to.write(string)
