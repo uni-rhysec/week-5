@@ -51,13 +51,15 @@ with open(f"/workspaces/week-5/{file_name}", "r") as read_from:
                     write_to.write("student_id,average_grade,classification\n")
                else:
                     student_grades = student.strip().split(',')
+                    print(student_grades)
                     total_score = 0
                     total_modules = 0
-                    for module in range(1,12):
+                    for module in range(1,13):
                          if student_grades[module] != '':
                               total_score += int(student_grades[module])
                               total_modules += 1
                     mean = total_score / total_modules
+                    print(mean)
                     classification = convert_to_classification(mean)
                     string = f"{student_grades[0]},{mean:.2f},{classification}\n"
                     write_to.write(string)
